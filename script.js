@@ -2,19 +2,12 @@ function initialize(appName, appVersion, apiKey) {
   
     let RUM = window.RUM;
     let faro = window.faro;
-    console.log('RUM instance' + window.RUM);
-    
-    // if(Object.is(RUM, null) || Object.is(RUM, undefined) || Object.is(faro, null) || Object.is(faro, undefined)){
-    //    return;
-    // }
 
-    console.log('Faro instance' + window.faro);
     faro = RUM.RumInit({
        app: {
           name: appName,
           version: appVersion,
        },
-    // isolate: false,
        traceLog: false,
        useSendBeacon: true,
        apiKey: apiKey,
@@ -62,4 +55,8 @@ function pushMeasurement(type, values) {
    faro.api.pushMeasurement(type, JSON.parse(values));
 }
 
+function setUserDetails(userDetails) {
+    var faro = window.faro;
+    faro.api.setUser(JSON.parse(userDetails));
+}
 
